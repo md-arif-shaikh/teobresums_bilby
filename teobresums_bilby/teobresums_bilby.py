@@ -343,3 +343,32 @@ def time_domain_eob_resum(
 
     t, hp, hc = EOBRun_module.EOBRunPy(pars)
     return t, hp, hc
+
+def frequency_domain_source_model(
+    frequency_array,
+    mass_1,
+    mass_2,
+    eccentricity,
+    a_1,
+    a_2,
+    luminosity_distance,
+    theta_jn,
+    phase,
+    **kwargs
+):
+    """Frequency domain source model of TEOBResumS waveform for bilby.
+    NOTE: This function just replaces the name of the spin parameters
+    `chi_1` and `chi_2` with `a_1` and `a_2`, respectively. This is because
+    bilby only recofnizes `a_1` and `a_2`
+    """
+    return fourier_transform_time_domain(
+    frequency_array,
+    mass_1,
+    mass_2,
+    eccentricity,
+    a_1,
+    a_2,
+    luminosity_distance,
+    theta_jn,
+    phase,
+    **kwargs)
